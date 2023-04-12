@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Home page</h1>
+        <ul>
+            <li>
+                @Html.ActionLink("Vets", "ListVet", "Vet", null, new { @class = "btn btn-primary btn-lg" })
+                <p></p>
+            </li>
+            <li>
+                @Html.ActionLink("Owners", "ListOwner", "Owner", null, new { @class = "btn btn-primary btn-lg" })
+                <p></p>
+            </li>
+            <li>
+                @Html.ActionLink("Pets", "ListPet", "Pet", null, new { @class = "btn btn-primary btn-lg" })
+            </li>
+    </div>
+</div>

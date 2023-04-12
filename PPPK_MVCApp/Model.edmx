@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Veterinarians" EntityType="Model.Store.Veterinarians" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Owners" EntityType="Model.Store.Owners" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Pets" EntityType="Model.Store.Pets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UploadedFiles" EntityType="Model.Store.UploadedFiles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="VeterinarianPet" Association="Model.Store.VeterinarianPet">
+      <End Role="Veterinarian" EntitySet="Veterinarians" />
+      <End Role="Pet" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="OwnerPet" Association="Model.Store.OwnerPet">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Pet" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="PetUploadedFile" Association="Model.Store.PetUploadedFile">
+      <End Role="Pet" EntitySet="Pets" />
+      <End Role="UploadedFile" EntitySet="UploadedFiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Veterinarians">
+    <Key>
+      <PropertyRef Name="IDVeterinarian" />
+    </Key>
+    <Property Name="IDVeterinarian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Owners">
+    <Key>
+      <PropertyRef Name="IDOwner" />
+    </Key>
+    <Property Name="IDOwner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Pets">
+    <Key>
+      <PropertyRef Name="IDPet" />
+    </Key>
+    <Property Name="IDPet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PetName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Species" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="VeterinarianIDVeterinarian" Type="int" Nullable="false" />
+    <Property Name="OwnerIDOwner" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UploadedFiles">
+    <Key>
+      <PropertyRef Name="IDUploadedFile" />
+    </Key>
+    <Property Name="IDUploadedFile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContentType" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Content" Type="varbinary(max)" Nullable="false" />
+    <Property Name="PetIDPet" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="VeterinarianPet">
+    <End Role="Veterinarian" Type="Model.Store.Veterinarians" Multiplicity="1" />
+    <End Role="Pet" Type="Model.Store.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Veterinarian">
+        <PropertyRef Name="IDVeterinarian" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="VeterinarianIDVeterinarian" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OwnerPet">
+    <End Role="Owner" Type="Model.Store.Owners" Multiplicity="1" />
+    <End Role="Pet" Type="Model.Store.Pets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="IDOwner" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerIDOwner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PetUploadedFile">
+    <End Role="Pet" Type="Model.Store.Pets" Multiplicity="1" />
+    <End Role="UploadedFile" Type="Model.Store.UploadedFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="IDPet" />
+      </Principal>
+      <Dependent Role="UploadedFile">
+        <PropertyRef Name="PetIDPet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Veterinarians" EntityType="Model.Veterinarian" />
+          <EntitySet Name="Owners" EntityType="Model.Owner" />
+          <EntitySet Name="Pets" EntityType="Model.Pet" />
+          <EntitySet Name="UploadedFiles" EntityType="Model.UploadedFile" />
+          <AssociationSet Name="VeterinarianPet" Association="Model.VeterinarianPet">
+            <End Role="Veterinarian" EntitySet="Veterinarians" />
+            <End Role="Pet" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="OwnerPet" Association="Model.OwnerPet">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="Pet" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="PetUploadedFile" Association="Model.PetUploadedFile">
+            <End Role="Pet" EntitySet="Pets" />
+            <End Role="UploadedFile" EntitySet="UploadedFiles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Veterinarian">
+          <Key>
+            <PropertyRef Name="IDVeterinarian" />
+          </Key>
+          <Property Name="IDVeterinarian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Pets" Relationship="Model.VeterinarianPet" FromRole="Veterinarian" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="IDOwner" />
+          </Key>
+          <Property Name="IDOwner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Pets" Relationship="Model.OwnerPet" FromRole="Owner" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="IDPet" />
+          </Key>
+          <Property Name="IDPet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetName" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Species" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Veterinarian" Relationship="Model.VeterinarianPet" FromRole="Pet" ToRole="Veterinarian" />
+          <Property Name="VeterinarianIDVeterinarian" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Owner" Relationship="Model.OwnerPet" FromRole="Pet" ToRole="Owner" />
+          <Property Name="OwnerIDOwner" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UploadedFiles" Relationship="Model.PetUploadedFile" FromRole="Pet" ToRole="UploadedFile" />
+        </EntityType>
+        <EntityType Name="UploadedFile">
+          <Key>
+            <PropertyRef Name="IDUploadedFile" />
+          </Key>
+          <Property Name="IDUploadedFile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Content" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="Pet" Relationship="Model.PetUploadedFile" FromRole="UploadedFile" ToRole="Pet" />
+          <Property Name="PetIDPet" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="VeterinarianPet">
+          <End Type="Model.Veterinarian" Role="Veterinarian" Multiplicity="1" />
+          <End Type="Model.Pet" Role="Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Veterinarian">
+              <PropertyRef Name="IDVeterinarian" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="VeterinarianIDVeterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OwnerPet">
+          <End Type="Model.Owner" Role="Owner" Multiplicity="1" />
+          <End Type="Model.Pet" Role="Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="IDOwner" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="OwnerIDOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PetUploadedFile">
+          <End Type="Model.Pet" Role="Pet" Multiplicity="1" />
+          <End Type="Model.UploadedFile" Role="UploadedFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="IDPet" />
+            </Principal>
+            <Dependent Role="UploadedFile">
+              <PropertyRef Name="PetIDPet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+    <EntitySetMapping Name="Veterinarians">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Veterinarian)">
+        <MappingFragment StoreEntitySet="Veterinarians">
+          <ScalarProperty Name="IDVeterinarian" ColumnName="IDVeterinarian" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Owners">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Owner)">
+        <MappingFragment StoreEntitySet="Owners">
+          <ScalarProperty Name="IDOwner" ColumnName="IDOwner" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pets">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Pet)">
+        <MappingFragment StoreEntitySet="Pets">
+          <ScalarProperty Name="IDPet" ColumnName="IDPet" />
+          <ScalarProperty Name="PetName" ColumnName="PetName" />
+          <ScalarProperty Name="Species" ColumnName="Species" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="VeterinarianIDVeterinarian" ColumnName="VeterinarianIDVeterinarian" />
+          <ScalarProperty Name="OwnerIDOwner" ColumnName="OwnerIDOwner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UploadedFiles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UploadedFile)">
+        <MappingFragment StoreEntitySet="UploadedFiles">
+          <ScalarProperty Name="IDUploadedFile" ColumnName="IDUploadedFile" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="PetIDPet" ColumnName="PetIDPet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
