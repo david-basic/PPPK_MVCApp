@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PPPK_MVCApp.Pet>
+
+@{
+    ViewBag.Title = "ListPet";
+}
+
+<h2>ListPet</h2>
+
+<p>@Html.ActionLink("HOME", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })</p>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePet")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Species)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VeterinarianIDVeterinarian)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerIDOwner)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDPet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Species)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VeterinarianIDVeterinarian)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerIDOwner)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPet", new { id = item.IDPet }) |
+                @Html.ActionLink("Details", "DetailsPet", new { id = item.IDPet }) |
+                @Html.ActionLink("Delete", "DeletePet", new { id = item.IDPet })
+            </td>
+        </tr>
+    }
+
+</table>

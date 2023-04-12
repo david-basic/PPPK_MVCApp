@@ -128,7 +128,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\PetController.cs" />
+    <Compile Include="Controllers\VetController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,10 +217,26 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Vet\ListVet.cshtml" />
+    <Content Include="Views\Vet\CreateVet.cshtml" />
+    <Content Include="Views\Vet\EditVet.cshtml" />
+    <Content Include="Views\Vet\DetailsVet.cshtml" />
+    <Content Include="Views\Vet\DeleteVet.cshtml" />
+    <Content Include="Views\Owner\ListOwner.cshtml" />
+    <Content Include="Views\Owner\EditOwner.cshtml" />
+    <Content Include="Views\Owner\DetailsOwner.cshtml" />
+    <Content Include="Views\Owner\DeleteOwner.cshtml" />
+    <Content Include="Views\Owner\CreateOwner.cshtml" />
+    <Content Include="Views\Pet\ListPet.cshtml" />
+    <Content Include="Views\Pet\EditPet.cshtml" />
+    <Content Include="Views\Pet\DetailsPet.cshtml" />
+    <Content Include="Views\Pet\DeletePet.cshtml" />
+    <Content Include="Views\Pet\CreatePet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

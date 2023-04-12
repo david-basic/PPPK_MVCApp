@@ -20,7 +20,7 @@ namespace PPPK_MVCApp
         {
             this.UploadedFiles = new HashSet<UploadedFile>();
         }
-    
+
         public int IDPet { get; set; }
         [Required]
         [MaxLength(20, ErrorMessage = "Pet name can not be longer then 20")]
@@ -35,7 +35,7 @@ namespace PPPK_MVCApp
         public int VeterinarianIDVeterinarian { get; set; }
         [Required]
         public int OwnerIDOwner { get; set; }
-    
+
         public virtual Veterinarian Veterinarian { get; set; }
         public virtual Owner Owner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,77 @@
+﻿@model PPPK_MVCApp.Pet
+
+@{
+    ViewBag.Title = "DetailsPet";
+}
+
+<h2>DetailsPet</h2>
+
+<div>
+    <h4>Pet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IDPet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDPet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PetName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PetName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Species)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Species)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VeterinarianIDVeterinarian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VeterinarianIDVeterinarian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerIDOwner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerIDOwner)
+        </dd>
+
+        @foreach (var uploadedFile in Model.UploadedFiles)
+        {
+            <dt>
+                @uploadedFile.Name
+            </dt>
+
+            <dd style="margin-top: 10px">
+                <img src="~/File?id=@uploadedFile.IDUploadedFile" alt="Picture" width="300" height="200" />
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditPet", new { id = Model.IDPet }) |
+    @Html.ActionLink("Back to List", "ListPet")
+</p>
