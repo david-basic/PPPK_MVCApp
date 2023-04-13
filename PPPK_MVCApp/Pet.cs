@@ -32,8 +32,10 @@ namespace PPPK_MVCApp
         [Range(0, 30, ErrorMessage = "Pet age can not be less than 0 and more than 30")]
         public int Age { get; set; }
         [Required]
+        [Range(0, 9999, ErrorMessage = "Vet ID has to be a positive number")]
         public int VeterinarianIDVeterinarian { get; set; }
         [Required]
+        [Range(0, 9999, ErrorMessage = "Owner ID has to be a positive number")]
         public int OwnerIDOwner { get; set; }
 
         public virtual Veterinarian Veterinarian { get; set; }
